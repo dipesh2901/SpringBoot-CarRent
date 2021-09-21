@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Car</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<style>
+body {
+	background-color: #FFFACD;
+}
+</style>
+</head>
+<body>
+	<nav class="navbar navbar-expand-md bg-light navbar-light">
+		<!-- Brand -->
+		<a class="navbar-brand" href="#">Car Rental</a>
+
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- Navbar links -->
+		<a class="navbar-brand" href="/" th:href="@{/carOwnerLogin} ">Car
+			Owner</a> <a class="navbar-brand" href="/" th:href="@{/carForm/new} ">Add
+			Car</a> <a class="navbar-brand" href="/" th:href="@{/rentCar} ">Rent
+			Car</a>
+	</nav>
+	<br>
+	<br>
+	<div class="container my-2">
+		<h1>Car List</h1>
+		<div th:if="${param.notReturned}">
+			<div class="alert alert-danger">Car Not Returned Yet.</div>
+		</div>
+		<table border="1" class="table table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th><a>Car Name</a></th>
+					<th><a>Fuel</a></th>
+					<th><a>Engine Capacity</a></th>
+					<th><a>Return Status</a></th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="car : ${listCars}">
+					<td th:text="${car.name}"></td>
+					<td th:text="${car.fuel}"></td>
+					<td th:text="${car.engineCapacity}"></td>
+					<td th:text="${car.returnStatus}"></td>
+					<td><a th:href="@{/showFormForCarUpdate/{id}(id=${car.id})}"
+						class="btn btn-primary">Update</a> <a
+						th:href="@{/deleteCar/{id}(id=${car.id})}" class="btn btn-danger">Delete</a></td>
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Car Form</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head><style>
+	body{
+	background-color: #20B2AA;
+	}
+	</style>
+<body>
+<nav class="navbar navbar-expand-md bg-light navbar-light">
+		<!-- Brand -->
+		<a class="navbar-brand" href="#">Car Rental</a>
+
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- Navbar links -->
+		<a class="navbar-brand" href="/" th:href="@{/carOwnerLogin} ">Car
+			Owner</a> <a class="navbar-brand" href="/" th:href="@{/car} ">Car</a>
+	</nav>
+	<br>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card" style="background-color: #FFFFE0;border:2px solid black;border-radius: 50px">
+				<h1 class="text-center">Add New Car</h1>
+				<div th:if="${param.success}">
+						<div class="alert alert-success">Car Added successfully!.</div>
+					</div>
+				<div class="card-body">
+					<form th:action="@{/cars}" th:object="${car}" method="POST">
+						<div class="form-group">
+							<label> Car Name </label> <input type="text"
+								name="name" th:field="*{name}"
+								class="form-control" placeholder="Enter Car Name" />
+						</div>
+						<div class="form-group">
+							<label> Car Fuel </label> <input type="text" name="fuel"
+								th:field="*{fuel}" class="form-control"
+								placeholder="Enter Car Fuel" />
+						</div>
+						<div class="form-group">
+							<label> Car Engine Capacity</label> <input type="text"
+								name="engineCapacity" th:field="*{engineCapacity}" class="form-control"
+								placeholder="Enter Engine Capacity" />
+						</div>				
+						<div class="box-footer">
+							<button type="submit" class="btn btn-primary">Add Car</button>
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
